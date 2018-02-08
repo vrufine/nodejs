@@ -9,7 +9,12 @@ module.exports = function () {
     var task = new Schema({
         title: String,
         description: String,
-        status: Boolean
+        status: {
+            type: Boolean,
+            default: false,
+            required: false,
+            
+        }
     })
     return db.model('tasks', task);
 }

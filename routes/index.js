@@ -43,7 +43,7 @@ router.put('/new/:id', (req, res) => {
       status: req.body.status
     },
   }, (err, task) => {
-    (err) ? res.send("erro") : res.send(task);
+    (err) ? res.send("erro") : req.send(task);
   })
 })
 
