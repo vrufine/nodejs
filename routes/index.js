@@ -28,7 +28,7 @@ router.get('/new/:id', (req, res) => {
 
 /* REMOVE ID  new page. */
 router.delete('/new/:id', (req, res) => {
-  model.findByIdAndRemove({ _id: req.params.id },
+  model.findByIdAndRemove(req.params.id,
     (err, task) => {
       (err) ? res.send("erro") : res.send("removido");
     })
@@ -36,15 +36,19 @@ router.delete('/new/:id', (req, res) => {
 
 /* PUT ID new page. */
 router.put('/new/:id', (req, res) => {
-  model.findByIdAndUpdate({ _id: req.params.id }, {
-    $set: {
-      title: req.body.title,
-      description: req.body.description,
-      status: req.body.status
+  model.findByIdAndUpdate(
+    req.params.id,
+    {
+      $set:
+        {
+          title: req.body.title,
+          description: req.body.description,
+          status: req.body.status
+        },
     },
-  }, (err, task) => {
-    (err) ? res.send("erro") : req.send(task);
-  })
+    {new: true}, (err, task) => {
+      (err) ? res.send("erro") : res.send(task);
+    })
 })
 
 module.exports = router;
